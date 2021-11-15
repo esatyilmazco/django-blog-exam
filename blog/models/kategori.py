@@ -9,6 +9,7 @@ class KategoriModel(models.Model):
         db_table = 'kategori'
         verbose_name_plural = 'Kategoriler'
         verbose_name='Kategori'
+        
     
     def __str__(self):
-        return self.isim
+     return self.isim
