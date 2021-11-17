@@ -11,6 +11,7 @@ class YazilarAdmin(admin.ModelAdmin):
     list_display = (
         'baslik','olusturulma_tarihi','duzenlenme_tarihi'
     )
+    
 
 
 
