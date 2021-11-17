@@ -1,10 +1,13 @@
 from django.shortcuts import render
-
-
+from blog.models import Yazilar
+from django.core.paginator import Paginator
 
 def anasayfa(request):
-    context ={
-        'isim': 'Esat'
-    }
-    return render(request,'pages/anasayfa.html',context=context)
+    yazilar=Yazilar.objects.order_by('-id')
+    sayfa=request.GET.get('sayfa')
+    paginator=Paginator(yazilar,2)
+    
+    return render(request,'pages/anasayfa.html',context={
+        'yazilar': paginator.get_page(sayfa)
+    })
 
