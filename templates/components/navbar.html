@@ -26,8 +26,9 @@
         </li>
         {% endfor %}
       </ul>
-      <form class="d-flex">
+      <form actions="{% url 'anasayfa' %}" class="d-flex">
         <input
+          name="sorgu"
           class="form-control me-2"
           type="search"
           placeholder="Search"
