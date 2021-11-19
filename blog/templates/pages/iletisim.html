@@ -1,8 +1,13 @@
-{% block content %}
-
+{% block content %} {% load crispy_forms_tags %}
 <form method="post">
-  {% csrf_token %} {{form}}
-  <input type="submit" value="Gönder" name="" id="" />
+  {{ form.non_field_errors }} {% csrf_token %} {{ form|crispy }}
+  <input
+    type="submit"
+    class="btn btn-danger mt-3"
+    value="Gönder"
+    name=""
+    id=""
+  />
 </form>
 
 {% endblock content %}
