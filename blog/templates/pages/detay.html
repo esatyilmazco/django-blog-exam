@@ -2,7 +2,10 @@
 
 {% load static %}
 
-{%block title %} {{yazi.baslik}} {% endblock %} {%
+{%block title %} {{yazi.baslik}} {% endblock %}
+{% load crispy_forms_tags %}
+
+{%
 block content %}
 
 <div class="card mb-3">
@@ -39,6 +42,23 @@ block content %}
 
 <5>Comments</h5>
 
+
+
+{% if request.user.is_authenticated %}
+
+<form method="POST">
+  {% csrf_token %}
+  {{ yorum_ekle_form|crispy }}
+  <input type="submit" value="Leave a comment"  class="btn btn-primary mt-3 mb-3">
+
+
+</form>
+
+{% else %}
+<p>Please login</p>
+{% endif %}
+  
+
 {% for yorum in yorumlar %}
 <div class="card">
 <div class="card-body" style="display: flex;flex-direction: row;">
@@ -58,6 +78,16 @@ block content %}
 <div>
 <h5 class="card-title">{{ yorum.yazan.user.username }}</h5>
 <p class="card-text">{{ yorum.yorum }}</p>
+<br>
+
+
+{% if request.user==yorum.yazan or request.user==yazi.yazar  %}
+<p>
+  <a class="btn btn-danger" href="{% url 'yorum-sil' id=yorum.id %}">Delete comment</a>
+  
+</p>
+{% endif %}
+  
 </div>
 </div>
 
