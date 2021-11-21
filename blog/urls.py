@@ -1,7 +1,8 @@
 from re import template
+from django.conf.urls import url
 from django.urls import path, include
 from blog.views import iletisim, anasayfa, kategori, yazilarim, detay, yazi_ekle, yazi_guncelle, yazi_sil, yorum_sil
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 
 urlpatterns = [
     path('', anasayfa, name='anasayfa'),
@@ -17,5 +18,9 @@ urlpatterns = [
         template_name='pages/hakkimda.html'
 
 
-    ), name='hakkimda')
+    ), name='hakkimda'),
+    path('yonlendir', RedirectView.as_view(
+        url='www.google.com'
+
+    ), name='yonlendir'),
 ]
