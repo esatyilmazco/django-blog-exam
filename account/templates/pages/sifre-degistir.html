@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %} Change
+the password {% endblock %} {% block content %}
+
+<form method="post" enctype="multipart/form-data">
+  {{ form.non_field_errors }} {% csrf_token %} {{ form|crispy }}
+  <input
+    type="submit"
+    class="btn btn-danger mt-3"
+    value="Change password"
+    name=""
+    id=""
+  />
+</form>
+
+{% endblock content %}
