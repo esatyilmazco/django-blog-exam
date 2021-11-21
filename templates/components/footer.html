@@ -1,5 +1,13 @@
 <div class="row">
   <div class="col-12">
-    <p>Tüm hakları saklıdır</p>
+    <p>
+      Tüm hakları saklıdır {% if not request.user.is_authenticated %} |
+      <a href="{% url 'giris' %}" class="btn btn-primary">Login</a>
+      <br />
+      <a href="{% url 'kayit' %}" class="btn btn-warning">Register</a>
+
+      {% endif %}
+    </p>
+    <br />
   </div>
 </div>

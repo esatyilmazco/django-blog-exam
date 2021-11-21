@@ -1,10 +1,11 @@
 <div class="col-sm-3">
   <div class="card bg-danger mb-3">
     <div class="card-header">Menu</div>
-    {% if request.user.is_authenticated %}
 
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Profile edit</li>
+      <li class="list-group-item">
+        <a href="{% url 'profil-guncelle' %}">Profile edit</a>
+      </li>
       <li class="list-group-item">
         <a href="{% url 'sifre-degistir' %}">Change password</a>
       </li>
@@ -18,10 +19,5 @@
         <li class="list-group-item">My Stories</li>
       </a>
     </ul>
-
-    {% else %}
-    <p>Log in to your account</p>
-
-    {% endif %}
   </div>
 </div>
