@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from account.forms import KayitFormu
-from django.contrib import messages
 from django.contrib.auth import login, authenticate
 
 
