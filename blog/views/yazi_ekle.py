@@ -1,20 +1,24 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from blog.forms import YaziEkleModelForm
 from blog.models import yazi
 from blog.views.detay import detay
 from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView
+from blog.models import Yazilar
+from django.urls import reverse
 
 
-@login_required(login_url='/')
-def yazi_ekle(request):
-    form=YaziEkleModelForm(request.POST or None,files=request.FILES or None)
-    if form.is_valid():
-        yazi=form.save(commit=False)
-        yazi.yazar=request.user
+class YaziEkleCreateView(CreateView):
+    template_name = 'pages/yazi-ekle.html'
+    model = Yazilar
+    fields = ['baslik', 'icerik', 'resim', 'kategoriler']
+
+    def get_success_url(self):
+        return reverse('detay', kwargs={'slug': self.objects.slug})
+
+    def form_valid(self, form):
+        yazi = form.save(commit=False)
+        yazi.yazar = self.request.user
         yazi.save()
         form.save_m2m()
-        return redirect('detay',slug=yazi.slug)
-    return render(request,'pages/yazi-ekle.html',context={
-        'form': form
-    })
-    
+        return super().form_valid(form)

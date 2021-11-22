@@ -9,7 +9,7 @@ class YaziSilDeleteView(DeleteView):
 
     template_name = 'pages/yazi_sil_onay.html'
     success_url = reverse_lazy('yazilarim')
-
+ 
     def get_queryset(self):
         yazi = Yazilar.objects.filter(
             slug=self.kwargs['slug'], yazar=self.request.user)
