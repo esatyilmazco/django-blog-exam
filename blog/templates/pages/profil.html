@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block title %} {{profil.user.name}} {% endblock %}
+{% block content %}
+
+<div class="card">
+  <div class="card-body">
+    <div class="card-text">
+      {% if profil.get_full_name== '' %} Name and Surname not found {%else %}
+      Name and Surname : {{ profil.get_full_name }} {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

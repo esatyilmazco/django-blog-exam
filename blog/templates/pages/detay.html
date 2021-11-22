@@ -22,7 +22,9 @@ block content %}
           <small class="text-muted"
             >Once paylasildi : {{ yazi.duzenlenme_tarihi|timesince }}
             </small>
-            
+            <br>
+            Yazar : <a href="{% url 'profil' username=yazi.yazar.username %}">{{yazi.yazar.username}} </a>
+
             {% if request.user == yazi.yazar  %}
             <p>
               <a class="btn btn-warning" href="{% url 'yazi-guncelle' slug=yazi.slug %}">Edit</a>

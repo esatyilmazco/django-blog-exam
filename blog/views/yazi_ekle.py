@@ -1,14 +1,11 @@
-from django.shortcuts import render, redirect
-from blog.forms import YaziEkleModelForm
-from blog.models import yazi
-from blog.views.detay import detay
-from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
 from blog.models import Yazilar
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class YaziEkleCreateView(CreateView):
+class YaziEkleCreateView(CreateView, LoginRequiredMixin):
+    login_url = reverse_lazy('giris')
     template_name = 'pages/yazi-ekle.html'
     model = Yazilar
     fields = ['baslik', 'icerik', 'resim', 'kategoriler']
