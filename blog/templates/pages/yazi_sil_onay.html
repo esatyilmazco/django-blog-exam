@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %} Do you
+want to delete? {% endblock %} {% block content %}
+<form method="post">
+  {{ form.non_field_errors }} {% csrf_token %}
+
+  <p>Do you want to delete</p>
+  <input type="submit" class="btn btn-danger mt-3" value="Yes" name="" id="" />
+</form>
+
+{% endblock %}
